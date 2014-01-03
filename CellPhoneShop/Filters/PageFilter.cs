@@ -16,8 +16,19 @@ namespace CellPhoneShop.Filters
         {
             if (Brands == null)
             {
-                BrandService service = new BrandService();
-                Brands = service.GetListBrand();
+                try
+                {
+                    BrandService service = new BrandService();
+                    Brands = service.GetListBrand();
+                }
+                catch (Exception)
+                {
+                    AccessTokenService tkService = new AccessTokenService();
+                    tkService.UpdateToken();
+
+                    BrandService service = new BrandService();
+                    Brands = service.GetListBrand();
+                }
             }
             filterContext.Controller.ViewBag.Brands = Brands;
             filterContext.Controller.ViewBag.LinkService = LinkService;
