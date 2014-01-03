@@ -51,8 +51,12 @@ namespace CellPhoneShop.Controllers
             FormsAuthentication.SignOut();
             if (Session["Token"] != null)
             {
+                Regex regex = new Regex(@":.(\d*)./");
+                string input = Request.Url.AbsoluteUri;
+                string s = regex.Match(input).Value;
+
                 return Redirect("https://www.facebook.com/logout.php?"
-                  + "next=" + Request.Url.AbsoluteUri
+                    + "next=" + input.Replace(s, "/")
                   + "&access_token=" + Session["Token"]);
             }
             return RedirectToAction("Index", "Home");
