@@ -11,6 +11,7 @@ using CellPhoneShop.Filters;
 using CellPhoneShop.Models;
 using Facebook;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace CellPhoneShop.Controllers
 {
@@ -196,7 +197,7 @@ namespace CellPhoneShop.Controllers
         private string app_id = ConfigurationManager.AppSettings["fb_appid"];
         private string app_secret = ConfigurationManager.AppSettings["fb_appsecret"];
 
-        private Uri RedirectUri
+        private string RedirectUri
         {
             get
             {
@@ -204,7 +205,11 @@ namespace CellPhoneShop.Controllers
                 uriBuilder.Query = null;
                 uriBuilder.Fragment = null;
                 uriBuilder.Path = Url.Action("FacebookCallback");
-                return uriBuilder.Uri;
+                Regex regex = new Regex(@":.(\d*)./");
+                string input = uriBuilder.Uri.AbsoluteUri;
+                string s = regex.Match(input).Value;
+
+                return input.Replace(s, "/");
             }
         }
 
@@ -216,7 +221,7 @@ namespace CellPhoneShop.Controllers
             {
                 client_id = app_id,
                 client_secret = app_secret,
-                redirect_uri = RedirectUri.AbsoluteUri,
+                redirect_uri = RedirectUri,
                 response_type = "code",
                 scope = "user_about_me,user_birthday,email"
             });
@@ -232,7 +237,7 @@ namespace CellPhoneShop.Controllers
             {
                 client_id = app_id,
                 client_secret = app_secret,
-                redirect_uri = RedirectUri.AbsoluteUri,
+                redirect_uri = RedirectUri,
                 code = code
             });
 
