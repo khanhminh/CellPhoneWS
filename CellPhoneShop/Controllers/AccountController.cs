@@ -51,6 +51,7 @@ namespace CellPhoneShop.Controllers
             FormsAuthentication.SignOut();
             if (Session["Token"] != null)
             {
+                Session.Remove("Token");
                 Regex regex = new Regex(@":.(\d*)./");
                 string input = Request.Url.AbsoluteUri;
                 string s = regex.Match(input).Value;
