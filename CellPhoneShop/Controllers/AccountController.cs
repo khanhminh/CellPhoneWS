@@ -10,6 +10,7 @@ using WebMatrix.WebData;
 using CellPhoneShop.Filters;
 using CellPhoneShop.Models;
 using Facebook;
+using System.Configuration;
 
 namespace CellPhoneShop.Controllers
 {
@@ -192,8 +193,8 @@ namespace CellPhoneShop.Controllers
             return View(info);
         }
 
-        private string app_id = "188837597989902";
-        private string app_secret = "106b9fc51568d2c3344fc044d744c9fe";
+        private string app_id = ConfigurationManager.AppSettings["fb_appid"];
+        private string app_secret = ConfigurationManager.AppSettings["fb_appsecret"];
 
         private Uri RedirectUri
         {
