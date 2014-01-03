@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\ShoppingCartBLL.cs" />
+    <Compile Include="BLL\TokenBLL.cs" />
     <Compile Include="CellPhoneShopModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -265,6 +266,9 @@
     <Compile Include="Services\RatingService.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="Token.cs">
+      <DependentUpon>CellPhoneShopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DetailsPament.cs" />
     <Compile Include="ViewModel\FilterModel.cs" />
     <Compile Include="ViewModel\ShoppingCart.cs" />

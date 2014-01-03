@@ -11,7 +11,13 @@ namespace CellPhoneShop
     public class BaseService
     {
         protected RestClient client = new RestClient(ConfigurationManager.AppSettings["LinkApi"]);
-        protected string access_token = ConfigurationManager.AppSettings["access_token"];
+        protected string access_token;
+
+        public BaseService()
+        {
+            TokenBLL tkBLL = new TokenBLL();
+            access_token = tkBLL.GetToken();
+        }
 
         protected string Get(RestRequest request)
         {

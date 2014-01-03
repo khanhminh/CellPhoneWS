@@ -15,16 +15,17 @@ namespace CellPhoneShop
         public void UpdateToken()
         {
             var state = GetAccessToken();
-            Save(state.AccessToken);
+            TokenBLL tkBLL = new TokenBLL();
+            tkBLL.SaveToken(state.AccessToken);
         }
 
-        private void Save(string date)
-        {
-            Configuration connectionConfiguration = WebConfigurationManager.OpenWebConfiguration("~");
-            connectionConfiguration.AppSettings.Settings["access_token"].Value = date;
-            connectionConfiguration.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-        }
+        //private void Save(string date)
+        //{
+        //    Configuration connectionConfiguration = WebConfigurationManager.OpenWebConfiguration("~");
+        //    connectionConfiguration.AppSettings.Settings["access_token"].Value = date;
+        //    connectionConfiguration.Save(ConfigurationSaveMode.Modified);
+        //    ConfigurationManager.RefreshSection("appSettings");
+        //}
 
         private static IAuthorizationState GetAccessToken()
         {

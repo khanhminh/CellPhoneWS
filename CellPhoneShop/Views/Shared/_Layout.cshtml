@@ -5,12 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="SHORTCUT ICON" href="images/icon.gif" type="image/x-icon">
         <title>@ViewBag.Title</title>
-        @Styles.Render("~/Content/css")
+        @*@Styles.Render("~/Content/css")
         @Styles.Render("~/JqueryUi/css")
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryui")        
-        @Scripts.Render("~/bundles/myscript")
+        @Scripts.Render("~/bundles/myscript")*@
+
+        <link href="/Content/themes/MyTheme/main.css" rel="stylesheet"/>
+        <link href="/Content/themes/MyTheme/mediaqueries.css" rel="stylesheet"/>
+        <link href="/Content/themes/MyTheme/skin.css" rel="stylesheet"/>
+        <link href="/Content/themes/MyTheme/mystype.css" rel="stylesheet"/>
+        <link href="/Content/zocial.css" rel="stylesheet"/>
+
+        <link href="/Content/themes/base/jquery.ui.all.css" rel="stylesheet"/>
+
+        <script src="/Scripts/modernizr-2.5.3.js"></script>
+
+        <script src="/Scripts/jquery-1.7.1.js"></script>
+        <script src="/Scripts/jquery-mobilemenu.js"></script>
+
+        <script src="/Scripts/jquery-ui-1.10.3.js"></script>
+        <script src="/Scripts/jquery.ui.datepicker-vi.js"></script>
+        
+        <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <script src="/Scripts/amazingslider.js"></script>
+        <script src="/Scripts/initslider-1.js"></script>
+        <script src="/Scripts/mustache.js"></script>
+        <script src="/Scripts/custom.js"></script>
+
+
+
+
+
         <script>jQuery(document).ready(function ($) { $('img').removeAttr('width height'); }, null);</script>   
         @*@RenderSection("MyScripts", required: false)*@     
         @RenderSection("scripts", required: false)
@@ -53,7 +80,7 @@
             @foreach (CellPhoneShop.NhaSanXuat nsx in ViewBag.Brands)
             {
             <li>
-              @Html.ActionLink(nsx.Ten, "Index", "Product", new { brand = nsx.MaNSX}, null)
+              @Html.ActionLink(nsx.Ten, "Index", "Product", new { brand = nsx.MaNSX }, null)
             </li>
             }
           

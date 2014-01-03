@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CellPhoneShopDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CellPhoneShopDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CellPhoneShopDbModelStoreContainer">
           <EntitySet Name="GioHang" EntityType="CellPhoneShopDbModel.Store.GioHang" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Token" EntityType="CellPhoneShopDbModel.Store.Token" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="GioHang">
           <Key>
@@ -18,13 +19,20 @@
           <Property Name="SoLuong" Type="int" Nullable="false" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="access_token" Type="nvarchar" Nullable="false" MaxLength="1000" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CellPhoneShopDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CellPhoneShopDbEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="GioHangs" EntityType="CellPhoneShopDbModel.GioHang" />
+          <EntitySet Name="Tokens" EntityType="CellPhoneShopDbModel.Token" />
         </EntityContainer>
         <EntityType Name="GioHang">
           <Key>
@@ -35,6 +43,13 @@
           <Property Name="MaSP" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="access_token" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -50,6 +65,14 @@
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="CellPhoneShopDbModel.Token">
+              <MappingFragment StoreEntitySet="Token">
+                <ScalarProperty Name="access_token" ColumnName="access_token" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

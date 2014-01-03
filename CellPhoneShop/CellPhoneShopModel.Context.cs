@@ -26,5 +26,6 @@ namespace CellPhoneShop
         }
     
         public DbSet<GioHang> GioHangs { get; set; }
+        public DbSet<Token> Tokens { get; set; }
     }
 }
